@@ -7,7 +7,60 @@
 @import (reference) "id7/less/mixins.less";
 
 // Just use this file to provide branding
-.apply-brand(#204f79);
-.apply-site-imagery(@basedir: 'images'; @masthead-image: 'masthead-image.png'; @border-image-left: 'border-image-left.png'; @border-image-right: 'border-image-right.png');
-
 // Any changes in here must go via the ITS Web Team, webteam@warwick.ac.uk
+
+@accent-grey: #666666;
+@accent-red: #ef4050;
+@id7-brand-colour: @accent-red;
+@accent-blue: #00b2dd;
+@accent-orange: #f47920;
+
+.apply-brand(#ef4050);
+.apply-site-imagery(@basedir: 'images'; @masthead-image: 'masthead_1170x110_ug_study.jpg'; @border-image-left: 'lhs_375x1200_ug_study.jpg'; @border-image-right: 'rhs_375x1200_ug_study.jpg');
+
+.header-colour(@accent-grey);
+.link-colour(@accent-red);
+
+.text-accent {
+  color: @accent-red;
+  .link-colour(@accent-red) !important;
+}
+
+@btn-accent-color:  contrast(@accent-red, @text-color, white, 50%);
+@btn-accent-bg:     @accent-red;
+@btn-accent-border: darken(@btn-accent-bg, 5%);
+
+// Brand accent colour button variant
+.btn-accent {
+  .button-variant(@btn-accent-color; @btn-accent-bg; @btn-accent-border);
+}
+
+// Reverse footer colours
+.id7-page-footer {
+  @id7-site-footer-colour: #e6e6e6;
+
+  &.id7-footer-coloured {
+    .id7-site-footer {
+      @site-footer-text-colour: contrast(@id7-site-footer-colour, @text-color, white, 50%);
+
+      background: @id7-site-footer-colour;
+      color: @site-footer-text-colour;
+      .header-colour(@site-footer-text-colour);
+      .link-colour(@site-footer-text-colour);
+    }
+
+    .id7-app-footer {
+      .id7-logo-bleed {
+        .logo-as-css-colour(@id7-site-footer-colour);
+      }
+    }
+  }
+
+  .map-column {
+    margin-top: @grid-gutter-width;
+
+    @media (min-width: @screen-sm-min) {
+      margin-top: -@grid-gutter-width;
+    }
+  }
+}
